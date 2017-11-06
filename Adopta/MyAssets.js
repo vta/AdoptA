@@ -403,10 +403,10 @@ define([
 
         //If asset is abandoned, remove it from the actionPerformed array
         if (this._actionPerformed && this._actionPerformed.hasOwnProperty(objectId) &&
-          actionName === this.config.actions.unAssign.name) {
+          actionName === this.config.actions.reported.name) {
           delete this._actionPerformed[objectId];
           this._selectedAsset = null;
-        } else if (actionName === this.config.actions.unAssign.name) {
+        } else if (actionName === this.config.actions.reported.name) {
           this._selectedAsset = null;
         }
       }
@@ -439,12 +439,12 @@ define([
     **/
     _performActionFromURL: function () {
       var objectId, isActionPerformed = false, actionName;
-      if (this.config.urlParams.hasOwnProperty(this.config.actions.unAssign.urlParameterLabel)) {
-        actionName = this.config.actions.unAssign.name;
+      if (this.config.urlParams.hasOwnProperty(this.config.actions.reported.urlParameterLabel)) {
+        actionName = this.config.actions.reported.name;
         array.some(this.myAssets, lang.hitch(this, function (currentGraphic) {
           if (currentGraphic.attributes[this.layer.objectIdField].toString() ===
-            this.config.urlParams[this.config.actions.unAssign.urlParameterLabel].toString()) {
-            this.emit("performAction", this.config.actions.unAssign.name, currentGraphic, true);
+            this.config.urlParams[this.config.actions.reported.urlParameterLabel].toString()) {
+            this.emit("performAction", this.config.actions.reported.name, currentGraphic, true);
             isActionPerformed = true;
             return true;
           }

@@ -6,18 +6,18 @@
   "nickNameField": "",
   "showReverseGeocodedAddress": true,
   "highlightColor": "#00ffff",
-  "loginHelpText": "<div style=\"text-align: center;  font-size:18px;\">Returning user?</div><br /><div style=\"text-align: center;\">Enter your email and login to adopt a catch basin.</div><br /><div style=\"text-align: center;  font-size:18px;\">First time here?</div><div style=\"text-align: center;\"><br /><span style=\"text-align: center;\">Don't worry, it's easy!  Enter your email address and signup, we will send you an email to confirm.</span></div>",
+  "loginHelpText": "<div style=\"text-align: center;  font-size:18px;\">Returning user?</div><br /><div style=\"text-align: center;\">Enter your email and login to report an issue.</div><br /><div style=\"text-align: center;  font-size:18px;\">First time here?</div><div style=\"text-align: center;\"><br /><span style=\"text-align: center;\">Don't worry, it's easy!  Enter your email address and signup, we will send you an email to confirm.</span></div>",
   "additionalLoginParameters": [],
   "actions": {
-    "assign": {
-      "name": "Adopt",
-      "urlParameterLabel": "assign",
+    "report": {
+      "name": "Report",
+      "urlParameterLabel": "report",
       "fieldsToUpdate": [
       ]
     },
-    "unAssign": {
-      "name": "Abandon",
-      "urlParameterLabel": "unassign",
+    "reported": {
+      "name": "Reported",
+      "urlParameterLabel": "reported",
       "fieldsToUpdate": [
       ]
     },
@@ -50,18 +50,14 @@
       "nauticalMiles": 9030
     }
   },
-  "adoptionCompleteMsg": "Thank you for adopting ${assetTitle}",
-  "abandonCompleteMsg": "Asset successfully abandoned.",
+  "adoptionCompleteMsg": "Thank you for reporting and issue at ${assetTitle}",
   "actionCompleteMsg": "Updated status ${actionName} successfully",
   "assetNotFoundMsg": "Asset not found.",
-  "assetAlreadyAdoptedMsg": "Asset ${assetTitle} is already adopted.",
-  "unableToPerformAction": "Unable to update status ${actionName}. The Asset is not in your list.",
-  "addAssetConfirmationMsg": "Would you like to create a new ${layerName} at this location? The new ${layerName} will be adopted",
-  "unableToAddNewAssetMsg": "Unable to add new asset",
+  "assetAlreadyAdoptedMsg": "Stop ${assetTitle} has already been reported.",
   "userTokenExpiredMsg": "welcome back!, but it seems your link has expired. We have sent you an email with a new link to access the app. Please check your email",
   "gpServiceSuccessMsg": "The login link has been emailed to you. Please click the link in your email to access the application.",
-  "selectAssetMsg": "Please select an asset on map to adopt",
-  "selectAssetToolTipAfterLogin": "Click to select/add an asset",
-  "selectAssetToolTipBeforeLogin": "Click to select an asset",
-  "nameAssetTextBoxPlaceholder": "Name your asset (optional)"
+  "selectAssetMsg": "Please select a stop on map to report.",
+  "selectAssetToolTipAfterLogin": "Click to select a stop.",
+  "selectAssetToolTipBeforeLogin": "Click to select a stop",
+
 }

@@ -154,9 +154,9 @@ define([
       appURL = jimuUtils.url.removeQueryParamFromUrl(appURL, "usertoken");
       //Remove parameter for fixed actions(adopt and abandon)
       appURL = jimuUtils.url.removeQueryParamFromUrl(appURL,
-        this.config.actions.assign.urlParameterLabel);
+        this.config.actions.report.urlParameterLabel);
       appURL = jimuUtils.url.removeQueryParamFromUrl(appURL,
-        this.config.actions.unAssign.urlParameterLabel);
+        this.config.actions.reported.urlParameterLabel);
       //Remove parameters for configured actions if available
       array.forEach(this.config.actions.additionalActions, lang.hitch(this,
         function (currentAction) {
@@ -208,9 +208,9 @@ define([
           "Asset_popup_configuration": popupTitle,
           "Widget_configuration": this._getRequiredConfigForGPTool()
         };
-        if (this.urlParamsToBeAdded.hasOwnProperty(this.config.actions.assign.urlParameterLabel)) {
+        if (this.urlParamsToBeAdded.hasOwnProperty(this.config.actions.report.urlParameterLabel)) {
           params.Adopted_assetid = this.urlParamsToBeAdded[
-            this.config.actions.assign.urlParameterLabel];
+            this.config.actions.report.urlParameterLabel];
         }
       }
       this._authGPService.execute(params, lang.hitch(this, function (
@@ -386,9 +386,9 @@ define([
         "App_URL": this._getAppURL(),
         "Action": "signup"
       };
-      if (this.urlParamsToBeAdded.hasOwnProperty(this.config.actions.assign.urlParameterLabel)) {
+      if (this.urlParamsToBeAdded.hasOwnProperty(this.config.actions.report.urlParameterLabel)) {
         params.Adopted_assetid = this.urlParamsToBeAdded[
-          this.config.actions.assign.urlParameterLabel];
+          this.config.actions.report.urlParameterLabel];
       }
       this._authGPService.execute(params, lang.hitch(this, function (
       response) {

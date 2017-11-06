@@ -217,7 +217,7 @@ define([
               updatedAttributes[this.config.nickNameField] =
                 this.nickNameInputTextBox.get("value");
             }
-            if (domAttr.get(adoptBtn, "innerHTML") === this.config.actions.assign.name) {
+            if (domAttr.get(adoptBtn, "innerHTML") === this.config.actions.report.name) {
               this._adoptAsset(this.selectedFeature);
             } else {
               //as we are updateing only the nick name field send action as null
@@ -241,7 +241,7 @@ define([
       var buttonText;
       if (assetStatus.isAssetAdopted && !assetStatus.isAssetAdoptedByLoggedInUser) {
         domClass.add(adoptBtn, "jimu-state-disabled");
-        buttonText = this.config.actions.unAssign.name;
+        buttonText = this.config.actions.reported.name;
       } else {
         if (assetStatus.isAssetAdoptedByLoggedInUser) {
           if (this.config.nickNameField !== "") {
@@ -259,7 +259,7 @@ define([
             buttonText = this.nls.nickNameUpdateButtonLabel;
           }
         } else {
-          buttonText = this.config.actions.assign.name;
+          buttonText = this.config.actions.report.name;
         }
       }
       domAttr.set(adoptBtn, "innerHTML", buttonText);
@@ -350,7 +350,7 @@ define([
       //Add users guid into asset to identify which asset belongs to user
       selectedFeature.attributes[this.config.foreignKeyFieldForUserTable] = "{" + this.config
         .userDetails[this.config.foreignKeyFieldForUserTable] + "}";
-      this.updateFieldsForAction(this.config.actions.assign.name, selectedFeature, true);
+      this.updateFieldsForAction(this.config.actions.report.name, selectedFeature, true);
     },
 
     /**
@@ -365,7 +365,7 @@ define([
       var isNewAssetAdopted, adoptionCompleteMsg, updatedFeatureAttributes = {},
         showMesssage = true, graphicsArray = [];
       //if action is adopted it means new asset is adopted
-      if (actionName === this.config.actions.assign.name) {
+      if (actionName === this.config.actions.report.name) {
         isNewAssetAdopted = true;
         //If action is assign, check if nick name field has some value and pass the
         //attribute to apply edits
@@ -404,7 +404,7 @@ define([
             } else {
               this.emit("actionPerformed", actionName,
                 selectedFeature.attributes[this.layer.objectIdField]);
-              if (actionName === this.config.actions.unAssign.name) {
+              if (actionName === this.config.actions.reported.name) {
                 this.emit("showMessage", this.config.abandonCompleteMsg);
                 if (selectedFeature.symbol) {
                   selectedFeature.symbol = null;
@@ -430,7 +430,7 @@ define([
             }
           } else {
             //if action is adopted it means new asset is adopted
-            if (actionName === this.config.actions.assign.name) {
+            if (actionName === this.config.actions.report.name) {
               //Show error if adoption fails
               this.emit("showMessage", this.nls.unableToAdoptAssetMsg);
             } else {
@@ -441,7 +441,7 @@ define([
           this.loading.hide();
         }), lang.hitch(this, function () {
           //if action is adopted it means new asset is adopted
-          if (actionName === this.config.actions.assign.name) {
+          if (actionName === this.config.actions.report.name) {
             //Show error if adoption fails
             this.emit("showMessage", this.nls.unableToAdoptAssetMsg);
           } else {
@@ -462,14 +462,14 @@ define([
     updateFieldsForAction: function (actionName, selectedFeature, showAssetDetails) {
       var fieldsToUpdate, updatedAttributes = {};
       //check if action is unAssign choose its fields to update
-      if (actionName === this.config.actions.unAssign.name) {
-        fieldsToUpdate = this.config.actions.unAssign.fieldsToUpdate;
-      } else if (actionName === this.config.actions.assign.name) {
+      if (actionName === this.config.actions.reported.name) {
+        fieldsToUpdate = this.config.actions.reported.fieldsToUpdate;
+      } else if (actionName === this.config.actions.report.name) {
         //Add related GUI field value from respective field
-        this.config.actions.assign.fieldsToUpdate[0].value = "{" + this.config
+        this.config.actions.report.fieldsToUpdate[0].value = "{" + this.config
           .userDetails[this.config.foreignKeyFieldForUserTable] + "}";
         //check if action is assign choose its fields to update and set adopt action flag
-        fieldsToUpdate = this.config.actions.assign.fieldsToUpdate;
+        fieldsToUpdate = this.config.actions.report.fieldsToUpdate;
       }
       else {
         array.some(this.config.actions.additionalActions, lang.hitch(this,
@@ -561,7 +561,7 @@ define([
         function (currentAction) {
           this._createBtn(currentAction, additionalActionsContainer);
         }));
-      this._createBtn(this.config.actions.unAssign, additionalActionsContainer);
+      this._createBtn(this.config.actions.reported, additionalActionsContainer);
     },
 
     /**
@@ -711,7 +711,7 @@ define([
       //If asset is abonded, remove it from the actionPerformed array
       if (this.actionPerformedInDetails &&
         this.actionPerformedInDetails.hasOwnProperty(objectId) &&
-        actionName === this.config.actions.unAssign.name) {
+        actionName === this.config.actions.reported.name) {
         delete this.actionPerformedInDetails[objectId];
       }
       this.emit("updateActionsInAssets", this.actionPerformedInDetails);

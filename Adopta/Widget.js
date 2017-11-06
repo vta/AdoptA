@@ -208,7 +208,7 @@ function (
         //once user is logged in the functionality to add assets will be enabled so connect and update the tooltip
         this._mapTooltipHandler.connectEventHandler();
         this._mapTooltipHandler.updateTooltip();
-        parameterLabel = this.config.actions.assign.urlParameterLabel;
+        parameterLabel = this.config.actions.report.urlParameterLabel;
         //check for url params has adoptId adopt the selected asset
         if (this.config.urlParams && this.config.urlParams.hasOwnProperty(parameterLabel)) {
           this._assetDetails.fetchSelectedAsset(this.config.urlParams[parameterLabel]).then(
@@ -438,7 +438,7 @@ function (
       }));
       //Add url params on adopting a asset
       on(this._assetDetails, "adoptAsset", lang.hitch(this, function (objectId) {
-        this._loginInstance.addURLParams(this.config.actions.assign.urlParameterLabel, objectId);
+        this._loginInstance.addURLParams(this.config.actions.report.urlParameterLabel, objectId);
       }));
       //Highlight feature on map
       on(this._assetDetails, "highlightFeatureOnMap", lang.hitch(this, function (selectedFeature) {
